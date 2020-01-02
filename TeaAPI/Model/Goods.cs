@@ -41,10 +41,6 @@ namespace TeaAPI.Model
         /// </summary>
         public string GRemark { get; set; }
         /// <summary>
-        /// 商品类型
-        /// </summary>
-        public int GType { get; set; }
-        /// <summary>
         /// 商品状态
         /// </summary>
         public string GState { get; set; }

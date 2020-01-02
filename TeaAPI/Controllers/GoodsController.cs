@@ -33,7 +33,6 @@ namespace TeaAPI.Controllers
                            a.GPrice,
                            a.GNum,
                            a.GRemark,
-                           a.GType,
                            a.GState
                        };
             return await linq.ToListAsync();
@@ -129,9 +128,11 @@ namespace TeaAPI.Controllers
         //public async Task<IActionResult> UpGStateThree()
         //{
         //    int i= db.Database.ExecuteSqlCommand(string.Format($"update Goods where State='停用'"));
-        //    return NoContent();
+        //    return NoContent();fdg
 
         //}
+
+  
 
     }
 }
