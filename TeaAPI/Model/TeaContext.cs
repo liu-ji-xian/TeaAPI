@@ -35,7 +35,6 @@ namespace TeaAPI.Model
         }
 
         public DbSet<Goods> Goods { get; set; }
-        public DbSet<GoodsPicture> GoodsPicture { get; set; }
         public DbSet<GoodsType> GoodsType { get; set; }
         public DbSet<Menu> Menu { get; set; }
         public DbSet<Orders> Orders { get; set; }
