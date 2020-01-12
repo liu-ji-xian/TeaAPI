@@ -9,6 +9,7 @@ using TeaAPI.Model;
 
 namespace TeaAPI.Controllers
 {
+
     [Route("[controller]")]
     [ApiController]
     public class GoodsController : ControllerBase
@@ -21,7 +22,7 @@ namespace TeaAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("ShowGoods")]
-        public async Task<object> ShowGoods(string name="")
+        public async Task<object> ShowGoods(string name = "")
         {
             var linq = from a in db.Goods
                        where a.GName.Contains(name)
@@ -37,6 +38,38 @@ namespace TeaAPI.Controllers
                        };
             return await linq.ToListAsync();
         }
+
+
+        /// <summary>
+        /// 获取前六条数据
+        /// </summary>
+        /// <returns></returns>
+        //[HttpGet]
+        //[Route("Shows")]
+        //public async Task<object> Shows()
+        //{
+        //    var linq = (from a in db.Goods
+        //                select a).Take(6);           
+        //    return await linq.ToListAsync();
+        //}
+
+        #region Dapper
+        //Dapper连接数据库查询前6条数据
+        [HttpGet]
+        [Route("Shows")]
+        public List<Goods> TopShow()
+        {
+            return DapperHelper<Goods>.Query("select top(6) * from Goods");
+        }
+
+
+
+        #endregion
+
+
+
+
+
         /// <summary>
         /// 添加一个商品信息
         /// </summary>
@@ -58,7 +91,7 @@ namespace TeaAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("UPGoods")]
-        public int UPGoods(Goods g,string id)
+        public int UPGoods(Goods g, string id)
         {
             string sql = $"update Goods set GoodsPicture='{g.GoodsPicture}',GName='{g.GName}',GPrice='{g.GPrice}',GNum='{g.GNum}',GRemark='{g.GRemark}',GState='{g.GState}' where GNo='{id}'";
             return DBHelper.ExecuteNonQuery(sql);
